@@ -23,15 +23,15 @@ contract Pacemaker {
 		lastBlockTime = block.number;
 	}
 
-	function addAuthority(address _auth) public onlyAdmin {
+	function addAuthority(address _auth) public onlyOwner {
 		authorities[_auth] = true;
 	}
 
-	function removeAuthority(address _auth) public onlyAdmin {
+	function removeAuthority(address _auth) public onlyOwner {
 		authorities[_auth] = false;
 	}
 
-	modifier onlyAdmin() {
+	modifier onlyOwner() {
 		require(msg.sender == owner);
 		_;
 	}
@@ -50,15 +50,15 @@ contract Pacemaker {
 		Deposit(msg.sender, msg.value);
 	}
 
-	function pace() public onlyAdmin {
+	function pace() public onlyOwner {
 		lastBlockTime = block.number;
 	}
 	
-	function setBlockTime(uint256 _nblocktime) public onlyAdmin {
+	function setBlockTime(uint256 _nblocktime) public onlyOwner {
 		blockTime = _nblocktime;
 	}
 
-	function withdraw(address sendTo) public onlyAdmin {
+	function withdraw(address sendTo) public onlyOwner {
 		require(sendTo.send(this.balance));
 		Withdrawal(sendTo, msg.sender);
 	}
@@ -67,4 +67,9 @@ contract Pacemaker {
         require(sendTo.send(this.balance));
         Withdrawal(sendTo, msg.sender);
 	}
+
+	function setOwner(address newOwner) public onlyOwner {
+		owner = newOwner;
+	}
+
 }
