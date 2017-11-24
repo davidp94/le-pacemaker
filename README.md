@@ -5,6 +5,15 @@ Solidity smart contract to manage your legacy
 ## Why
 
 
+## How it works
+
+- User deploy contract 
+- User manage heirs
+- User manages when heirs can have withdraw the funds
+- User deposits ethers
+- User have to send an "heartbeat" regularly within a period of time that he has set  - to not let the heirs withdraw his ethers
+- If user doesn't send it after this period of time (counted with blocks) - any of the heirs (which can be a multisig smart contract) can take the ethers out.
+
 ## How to get started
 
 ## Develop
