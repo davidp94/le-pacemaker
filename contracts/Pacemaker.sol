@@ -72,4 +72,8 @@ contract Pacemaker {
 		owner = newOwner;
 	}
 
+	function getBalance() constant returns (uint256 bal) {
+		return this.balance;
+	}
+
 }
